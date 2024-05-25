@@ -1,5 +1,9 @@
 #include "Physics.h"
 
+// Input degree and output corresponding radian
+double toRadians(double degrees){
+    return degrees * M_PI / 180.0; 
+}
 
 // Explicit Euler method for calculating position
 // Could lead to stability problems -> Look into it
@@ -10,6 +14,8 @@ void explicitEuler(RigidBody& body, double dt) {
     body.position.z += body.velocity.z * dt;
 }
 
+// Cross Product Matrix
+// Note that it is skew-symmetric
 Eigen::Matrix3d cross_matrix(const Eigen::Vector3d& omega){
     Eigen::Matrix3d cross_product_matrix; 
     cross_product_matrix << 0, -omega.z(), omega.y(),
@@ -18,8 +24,9 @@ Eigen::Matrix3d cross_matrix(const Eigen::Vector3d& omega){
     return cross_product_matrix; 
 }
 
+// Use fact that for a unit vector u, A the cross product matrix of said unit vector, and angle t in radians
+//     e^tA represents the rotation matrix about the line throuhg the origin in the direction u by t 
 Eigen::Matrix3d exp_rotation(const Eigen::Vector3d& omega, const Eigen::Matrix3d& orientation, double rad){
-
     // Normalize omega  
     Eigen::Vector3d omega_norm = omega.normalized();
 

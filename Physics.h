@@ -4,7 +4,9 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/MatrixFunctions>
 #include "RigidBody.h"
+#include <cmath>
 
+double toRadians(double degrees);
 // Function to update the position of a rigid body using the explicit Euler method
 void explicitEuler(RigidBody& body, double dt);
 Eigen::Matrix3d cross_matrix(const Eigen::Vector3d& omega);
