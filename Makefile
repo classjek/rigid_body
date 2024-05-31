@@ -6,13 +6,14 @@ CFLAGS=-Wall -g -std=c++11
 
 
 # Define any directories containing header files other than /usr/include
-INCLUDES=-I../eigen-3.4.0
+INCLUDES=-I../eigen-3.4.0 -I../websocketpp
+
 
 # Define library paths in addition to /usr/lib
 LFLAGS=
 
 # Define any libraries to link into executable:
-LIBS=
+LIBS=-lboost_system -lpthread
 
 # Define the C++ source files
 SRCS=main.cpp Physics.cpp
